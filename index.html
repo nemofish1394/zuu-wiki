@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZUU资遇 · 行政指引百科全书</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#1a3a5c;--primary-light:#e8eef5;--accent:#c8a45a;--accent-light:#faf3e0;--success:#16a34a;--success-light:#dcfce7;--warning:#d97706;--warning-light:#fef3c7;--danger:#dc2626;--danger-light:#fee2e2;--info:#0284c7;--info-light:#e0f2fe;--g50:#f9fafb;--g100:#f3f4f6;--g200:#e5e7eb;--g300:#d1d5db;--g400:#9ca3af;--g500:#6b7280;--g600:#4b5563;--g700:#374151;--g800:#1f2937;--g900:#111827;--r:8px;--sh:0 1px 3px rgba(0,0,0,.1);--shm:0 4px 6px -1px rgba(0,0,0,.1)}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--g50);color:var(--g800);line-height:1.6}
+.header{background:var(--primary);color:#fff;padding:14px 28px;position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.header h1{font-size:18px;font-weight:600;letter-spacing:1px}
+.header h1 span{color:var(--accent);font-weight:700}
+.search-box{display:flex;align-items:center;background:rgba(255,255,255,.15);border-radius:20px;padding:6px 14px;width:320px}
+.search-box input{background:none;border:none;color:#fff;outline:none;width:100%;font-size:14px}
+.search-box input::placeholder{color:rgba(255,255,255,.6)}
+.layout{display:flex;height:calc(100vh - 52px)}
+.sidebar{width:260px;min-width:260px;background:#fff;border-right:1px solid var(--g200);overflow-y:auto;padding:12px 0}
+.sidebar::-webkit-scrollbar{width:4px}
+.sidebar::-webkit-scrollbar-thumb{background:var(--g300);border-radius:2px}
+.nav-section{padding:6px 16px;font-size:11px;color:var(--g400);text-transform:uppercase;letter-spacing:1px;margin-top:8px}
+.nav-item{display:flex;align-items:center;padding:10px 16px;cursor:pointer;font-size:14px;color:var(--g600);transition:all .15s;border-left:3px solid transparent;gap:10px}
+.nav-item:hover{background:var(--primary-light);color:var(--primary)}
+.nav-item.active{background:var(--primary-light);color:var(--primary);border-left-color:var(--primary);font-weight:600}
+.nav-icon{width:20px;text-align:center;font-size:16px}
+.nav-badge{margin-left:auto;background:var(--accent);color:#fff;font-size:10px;padding:1px 6px;border-radius:10px}
+.main{flex:1;overflow-y:auto;padding:24px 32px}
+.main::-webkit-scrollbar{width:6px}
+.main::-webkit-scrollbar-thumb{background:var(--g300);border-radius:3px}
+.page-title{font-size:22px;font-weight:700;color:var(--primary);margin-bottom:4px;display:flex;align-items:center;gap:10px}
+.page-desc{color:var(--g500);font-size:14px;margin-bottom:20px}
+.progress-bar-wrap{background:var(--g200);border-radius:10px;height:8px;margin-bottom:20px;overflow:hidden}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--primary));border-radius:10px;transition:width .4s}
+.progress-text{font-size:12px;color:var(--g500);margin-bottom:16px;text-align:right}
+.card{background:#fff;border-radius:var(--r);box-shadow:var(--sh);margin-bottom:14px;overflow:hidden;border:1px solid var(--g200);transition:box-shadow .2s}
+.card:hover{box-shadow:var(--shm)}
+.card-header{display:flex;align-items:center;padding:14px 18px;cursor:pointer;gap:12px;user-select:none}
+.card-status{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.card-status.done{background:var(--success)}
+.card-status.pending{background:var(--g300)}
+.card-status.progress{background:var(--warning)}
+.card-title{font-size:15px;font-weight:600;color:var(--g800);flex:1}
+.card-toggle{color:var(--g400);font-size:18px;transition:transform .2s}
+.card-toggle.open{transform:rotate(180deg)}
+.card-body{display:none;padding:0 18px 16px;border-top:1px solid var(--g100)}
+.card-body.show{display:block}
+.tabs{display:flex;border-bottom:1px solid var(--g200);margin:12px 0 0}
+.tab{padding:8px 16px;font-size:13px;color:var(--g500);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s}
+.tab:hover{color:var(--primary)}
+.tab.active{color:var(--primary);border-bottom-color:var(--primary);font-weight:600}
+.tab-content{display:none;padding-top:14px}
+.tab-content.show{display:block}
+.step{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--g100)}
+.step:last-child{border-bottom:none}
+.step-num{width:26px;height:26px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:2px}
+.step-content{flex:1}
+.step-title{font-weight:600;font-size:14px;color:var(--g800)}
+.step-desc{font-size:13px;color:var(--g600);margin-top:2px}
+.contact-card{display:inline-flex;align-items:center;gap:8px;background:var(--primary-light);padding:8px 14px;border-radius:var(--r);margin:4px 4px 4px 0;font-size:13px}
+.contact-name{font-weight:600;color:var(--primary)}
+.contact-role{color:var(--g500);font-size:12px}
+.tag{display:inline-block;padding:2px 10px;border-radius:12px;font-size:12px;font-weight:500;margin:2px}
+.tag-warn{background:var(--warning-light);color:var(--warning)}
+.tag-info{background:var(--info-light);color:var(--info)}
+.tag-ok{background:var(--success-light);color:var(--success)}
+.tag-danger{background:var(--danger-light);color:var(--danger)}
+.tip-box{padding:12px 16px;border-radius:var(--r);margin:10px 0;font-size:13px;line-height:1.7}
+.tip-warn{background:var(--warning-light);border-left:3px solid var(--warning)}
+.tip-info{background:var(--info-light);border-left:3px solid var(--info)}
+.tip-ok{background:var(--success-light);border-left:3px solid var(--success)}
+.tip-danger{background:var(--danger-light);border-left:3px solid var(--danger)}
+.checklist{list-style:none;padding:0}
+.checklist li{display:flex;align-items:flex-start;gap:8px;padding:6px 0;font-size:13px;border-bottom:1px solid var(--g100)}
+.checklist li:last-child{border-bottom:none}
+.check-box{width:18px;height:18px;border:2px solid var(--g300);border-radius:4px;cursor:pointer;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.check-box.checked{background:var(--success);border-color:var(--success);color:#fff}
+.check-box.checked::after{content:"✓";font-size:12px}
+.timeline{position:relative;padding-left:24px}
+.timeline::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--g200)}
+.tl-item{position:relative;padding:8px 0 16px}
+.tl-dot{position:absolute;left:-20px;top:12px;width:12px;height:12px;border-radius:50%;background:var(--primary);border:2px solid #fff;box-shadow:0 0 0 2px var(--primary)}
+.tl-title{font-weight:600;font-size:14px}
+.tl-desc{font-size:13px;color:var(--g600);margin-top:2px}
+.company-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:10px 0}
+.company-item{background:var(--g50);border:1px solid var(--g200);border-radius:var(--r);padding:10px 14px}
+.company-name{font-weight:700;font-size:14px;color:var(--primary);margin-bottom:4px}
+.company-detail{font-size:12px;color:var(--g600);line-height:1.6}
+.overview-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.stat-card{background:#fff;border-radius:var(--r);padding:16px;text-align:center;box-shadow:var(--sh);border:1px solid var(--g200)}
+.stat-num{font-size:28px;font-weight:700;color:var(--primary)}
+.stat-label{font-size:12px;color:var(--g500);margin-top:4px}
+.flow-steps{display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin:12px 0}
+.flow-step{background:var(--primary-light);color:var(--primary);padding:8px 14px;border-radius:var(--r);font-size:13px;font-weight:500;position:relative}
+.flow-arrow{color:var(--g400);font-size:18px}
+table.data-table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+.data-table th{background:var(--primary);color:#fff;padding:8px 12px;text-align:left;font-weight:600}
+.data-table td{padding:8px 12px;border-bottom:1px solid var(--g200)}
+.data-table tr:hover td{background:var(--g50)}
+.section-divider{height:1px;background:var(--g200);margin:16px 0}
+@media(max-width:768px){.layout{flex-direction:column}.sidebar{width:100%;min-width:100%;max-height:200px;border-right:none;border-bottom:1px solid var(--g200)}.main{padding:16px}.overview-stats{grid-template-columns:repeat(2,1fr)}.search-box{width:200px}}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1><span>ZUU</span> 资遇 · 行政指引百科全书</h1>
+  <div class="search-box">
+    <span style="margin-right:8px">🔍</span>
+    <input type="text" id="searchInput" placeholder="搜索流程、联系人、保司..." oninput="handleSearch(this.value)">
+  </div>
+</div>
+<div class="layout">
+  <div class="sidebar" id="sidebar">
+    <div class="nav-section">业务旅程</div>
+    <div class="nav-item active" onclick="showModule('overview')"><span class="nav-icon">📊</span>总览仪表盘</div>
+    <div class="nav-item" onclick="showModule('onboard')"><span class="nav-icon">🚀</span>入职签约<span class="nav-badge">Step 1</span></div>
+    <div class="nav-item" onclick="showModule('license')"><span class="nav-icon">🪪</span>上牌挂牌<span class="nav-badge">Step 2</span></div>
+    <div class="nav-item" onclick="showModule('account')"><span class="nav-icon">🔑</span>保司账号开通<span class="nav-badge">Step 3</span></div>
+    <div class="nav-item" onclick="showModule('lifebee')"><span class="nav-icon">📱</span>LifeBee APP<span class="nav-badge">Step 4</span></div>
+    <div class="nav-item" onclick="showModule('signing')"><span class="nav-icon">✍️</span>签单投保<span class="nav-badge">Step 5</span></div>
+    <div class="nav-item" onclick="showModule('pending')"><span class="nav-icon">⏳</span>PENDING处理<span class="nav-badge">Step 6</span></div>
+    <div class="nav-item" onclick="showModule('pos')"><span class="nav-icon">📬</span>保单交付POS<span class="nav-badge">Step 7</span></div>
+    <div class="nav-section">更多指引</div>
+    <div class="nav-item" onclick="showModule('transfer')"><span class="nav-icon">🔄</span>转经纪公司</div>
+    <div class="nav-item" onclick="showModule('referral')"><span class="nav-icon">🤝</span>转介合作</div>
+    <div class="nav-item" onclick="showModule('cpd')"><span class="nav-icon">📚</span>CPD / 续签 / MPF</div>
+    <div class="nav-item" onclick="showModule('support')"><span class="nav-icon">💬</span>沟通与资源</div>
+    <div class="nav-item" onclick="showModule('commission')"><span class="nav-icon">💰</span>佣金与晋升</div>
+  </div>
+  <div class="main" id="mainContent">
+  </div>
+</div>
+
+<script>
+const DATA = {
+overview: {
+  title: "📊 总览仪表盘",
+  desc: "ZUU资遇保险经纪 — 新人行政全流程一览",
+  html: `
+  <div class="overview-stats">
+    <div class="stat-card"><div class="stat-num" id="statTotal">0</div><div class="stat-label">总任务项</div></div>
+    <div class="stat-card"><div class="stat-num" id="statDone" style="color:var(--success)">0</div><div class="stat-label">已完成</div></div>
+    <div class="stat-card"><div class="stat-num" id="statPending" style="color:var(--warning)">0</div><div class="stat-label">进行中</div></div>
+    <div class="stat-card"><div class="stat-num" id="statPct" style="color:var(--accent)">0%</div><div class="stat-label">完成率</div></div>
+  </div>
+  <div class="tip-box tip-info">
+    <strong>🏢 关于资遇</strong><br>
+    资遇保险经纪（ZUU）成立三十载，作为资遇财富管理有限公司旗下的持牌保险经纪公司，秉持「承您所需·至臻致远」的服务理念，专注为家族办公室、金融机构及高净值客户提供顶尖的保险规划服务。<br><br>
+    <strong>公司地址：</strong>香港九龙红磡都会道10号都会大厦17楼1702室<br>
+    <strong>商业登记证号码：</strong>19096903<br>
+    <strong>官网：</strong>www.zuu.com.hk
+  </div>
+  <h3 style="margin:20px 0 12px;color:var(--primary)">📍 新人完整旅程地图</h3>
+  <div class="flow-steps">
+    <div class="flow-step" style="cursor:pointer" onclick="showModule('onboard')">① 入职签约</div><span class="flow-arrow">→</span>
+    <div class="flow-step" style="cursor:pointer" onclick="showModule('license')">② 上牌挂牌</div><span class="flow-arrow">→</span>
+    <div class="flow-step" style="cursor:pointer" onclick="showModule('account')">③ 保司账号</div><span class="flow-arrow">→</span>
+    <div class="flow-step" style="cursor:pointer" onclick="showModule('lifebee')">④ LifeBee APP</div><span class="flow-arrow">→</span>
+    <div class="flow-step" style="cursor:pointer" onclick="showModule('signing')">⑤ 签单投保</div><span class="flow-arrow">→</span>
+    <div class="flow-step" style="cursor:pointer" onclick="showModule('pending')">⑥ PENDING</div><span class="flow-arrow">→</span>
+    <div class="flow-step" style="cursor:pointer" onclick="showModule('pos')">⑦ 保单交付</div>
+  </div>
+  <div class="tip-box tip-warn" style="margin-top:16px">
+    <strong>⚠️ 核心提醒</strong><br>
+    · 香港非永居申请人签证到期3个月内不予安排上牌申请和签约<br>
+    · 每月5号和20号为公司发佣日<br>
+    · 持牌人每年须完成至少15个CPD时数（含3个道德与规例）<br>
+    · INS公司LifeBee编码W168 / Digital公司LifeBee编码ZUU
+  </div>
+  <h3 style="margin:20px 0 12px;color:var(--primary)">👥 核心联系人</h3>
+  <div style="display:flex;flex-wrap:wrap;gap:6px">
+    <div class="contact-card"><span class="contact-name">Summer</span><span class="contact-role">入职/上牌助理 · summer.xia@zuu.com.hk</span></div>
+    <div class="contact-card"><span class="contact-name">Tina</span><span class="contact-role">业务部主任 · 转经纪公司</span></div>
+    <div class="contact-card"><span class="contact-name">Sherry</span><span class="contact-role">预约专员 · 签单预约</span></div>
+    <div class="contact-card"><span class="contact-name">Bobo</span><span class="contact-role">CS专员 · 签单辅导</span></div>
+    <div class="contact-card"><span class="contact-name">Alfred</span><span class="contact-role">保单管理部主任 · PENDING处理</span></div>
+    <div class="contact-card"><span class="contact-name">Carmen</span><span class="contact-role">对账专员 · 保费对账/生效通知</span></div>
+    <div class="contact-card"><span class="contact-name">Annie</span><span class="contact-role">对账专员</span></div>
+    <div class="contact-card"><span class="contact-name">Sharon</span><span class="contact-role">人力小管家</span></div>
+    <div class="contact-card"><span class="contact-name">Ling Chung</span><span class="contact-role">万通账号 · ling.chung@zuuins.com.hk</span></div>
+  </div>`
+},
+
+onboard: {
+  title: "🚀 入职签约",
+  desc: "从准备资料到正式签约的完整流程",
+  cards: [
+    {id:"ob1",title:"上牌所需文件准备",status:"pending",tabs:{
+      "操作步骤":`<div class="checklist"><li><div class="check-box" data-id="ob1-1"></div><div><strong>香港身份证</strong></div></li>
+<li><div class="check-box" data-id="ob1-2"></div><div><strong>保险资格考试成绩</strong><br>卷一：保险原理及实务 / 卷三：长期保险 / 卷五(非必需)：投资相连长期业务</div></li>
+<li><div class="check-box" data-id="ob1-3"></div><div><strong>学历证明文件</strong><br>国内学历：毕业证 + 中国高等教育学历认证报告<br>国外学历：毕业证书 + 教育部留学服务中心认证<br>香港学历：毕业证</div></li>
+<li><div class="check-box" data-id="ob1-4"></div><div><strong>入境许可文件</strong><br>护照/港澳通行证 + 入境签证/进入许可通知书 + 入境小白条（需显示批准在港逗留期限）</div></li>
+<li><div class="check-box" data-id="ob1-5"></div><div><strong>上牌申请表格签字</strong><br>需提供：香港电话号码、邮箱、香港地址</div></li></div>`,
+      "流程":`<div class="timeline">
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">建上牌入职协助群</div><div class="tl-desc">招募人、团队助理-SUMMER、新人及上线经理进群</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">准备上述所需文件</div><div class="tl-desc">备齐后电邮至 summer.xia@zuu.com.hk 予合规部处理</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">首次上牌</div><div class="tl-desc">开通保监账户 → 收到电邮启动账户 → 登录保险中介一站通提交牌照申请 → 缴费 → 资料无误后提交给保监局审批（14个工作日）</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">由其他经纪公司转主事人</div><div class="tl-desc">提供牌照号 → 保监局发送电邮给新同事确认转换 → 确认后公司发送至保监局审批（14个工作日）</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">由个人保险代理转为保险经纪牌照</div><div class="tl-desc">IA系统撤销代理人牌照（约2-3个工作日）→ 公司为新同事上牌 → 保监发送确认邮件 → 确认后发送至保监局审批（14个工作日）</div></div>
+</div>`,
+      "注意事项":`<div class="tip-box tip-danger"><strong>⚠️ 重要</strong><br>香港非永居申请人签证到期3个月内不予安排上牌申请！</div>
+<div class="tip-box tip-warn"><strong>💡 提示</strong><br>· 助理会发所需文件及相关指引，按照指引流程进行保监局牌照申请<br>· 完整文件详情请查阅企业微信微盘：直营百科大全 > 资遇行政指引 > 挂牌</div>`
+    }},
+    {id:"ob2",title:"签约入职",status:"pending",tabs:{
+      "所需文件":`<div class="checklist">
+<li><div class="check-box" data-id="ob2-1"></div><div><strong>香港身份证</strong></div></li>
+<li><div class="check-box" data-id="ob2-2"></div><div><strong>个人简历</strong></div></li>
+<li><div class="check-box" data-id="ob2-3"></div><div><strong>地址证明</strong>（最近3个月内）</div></li>
+<li><div class="check-box" data-id="ob2-4"></div><div><strong>学历证明</strong></div></li>
+<li><div class="check-box" data-id="ob2-5"></div><div><strong>香港银行月结单</strong>（最近3个月内）</div></li>
+<li><div class="check-box" data-id="ob2-6"></div><div><strong>上一份工作的工作证明</strong>（合约/离职信/推荐信）</div></li></div>`,
+      "流程":`<div class="timeline">
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">提前3个工作日在直营服务群内预约</div><div class="tl-desc">准备签约所需文件如地址证明、简历等</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">助理会跟HR预约签约时间</div><div class="tl-desc">以便HR提前准备签约文件</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">按照预约时间到公司找HR签约</div><div class="tl-desc">带齐所有入职文件正本</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">开通公司电邮</div><div class="tl-desc">约一周左右</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">开通LB系统</div><div class="tl-desc">约3天左右</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">开通各保司账号</div><div class="tl-desc">行政部在启动公司邮箱后一周内陆续创建</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">制作保险及家办名片</div><div class="tl-desc">每周五更新</div></div>
+</div>`,
+      "联系人":`<div class="contact-card"><span class="contact-name">Summer Xia</span><span class="contact-role">入职/签约助理</span></div><br>
+<div style="margin-top:8px;font-size:13px;color:var(--g600)">📧 summer.xia@zuu.com.hk<br>📧 summer.xia@zuuins.com.hk<br><br>合约文件范本详情请查阅企业微信微盘：<br>直营百科大全 > 资遇行政指引 > 入职</div>`
+    }}
+  ]
+},
+
+license: {
+  title: "🪪 上牌挂牌",
+  desc: "保险牌照、资管牌照、强积金牌照上牌全指引",
+  cards: [
+    {id:"lic1",title:"保险2/5牌照上牌",status:"pending",tabs:{
+      "流程":`<div class="timeline">
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">在直营服务群内通知</div><div class="tl-desc">并发送相关牌照的成绩单给公司备份</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">登入保险中介一站通 → 更改业务系列</div><div class="tl-desc">拟在申请人牌照中所指明的业务系列</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">回答品格、准财务状况、纪律行动与调查</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">提交并上传成绩单附件</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">公司审批 → 保监审批 → 完成上牌</div></div>
+</div>`,
+      "业务系列选择":`<div class="tip-box tip-info">
+<strong>业务系列选择说明：</strong><br>
+1. 只上5号牌选择：<strong>长期业务</strong>（包括相连长期业务）<br>
+2. 只上2号牌选择：<strong>一般业务及长期业务</strong>（不包括相连长期业务）<br>
+3. 同时上2和5号牌选择：<strong>一般业务及长期业务</strong>（包括相连长期业务）
+</div>`,
+      "注意事项":`<div class="tip-box tip-warn"><strong>💡 缴费说明</strong><br>缴费金额请以保监局系统显示为准。</div>`
+    }},
+    {id:"lic2",title:"资管牌照（SFC）上牌",status:"pending",tabs:{
+      "流程":`<div class="timeline">
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">在直营服务群内通知并发送申请所需文件</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">助理收集齐所需文件后给资管同事进行挂牌申请</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">完成上牌后通知</div></div>
+</div>`,
+      "所需文件":`<div class="checklist">
+<li><div class="check-box" data-id="lic2-1"></div><div>Hong Kong Identity Card</div></li>
+<li><div class="check-box" data-id="lic2-2"></div><div>Address proof</div></li>
+<li><div class="check-box" data-id="lic2-3"></div><div>CV (including the latest 5 years of Employee History)</div></li>
+<li><div class="check-box" data-id="lic2-4"></div><div>Academic proof (certificate)</div></li>
+<li><div class="check-box" data-id="lic2-5"></div><div>Licensing examination result proof</div></li>
+<li><div class="check-box" data-id="lic2-6"></div><div>过去5年是否曾任公司董事/股东（如是请提供详情及证明）</div></li></div>`
+    }},
+    {id:"lic3",title:"强积金牌照上牌",status:"pending",tabs:{
+      "流程":`<div class="timeline">
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">在直营服务群内通知</div><div class="tl-desc">并发送相关牌照的成绩单给公司备份</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">填写《强积金挂牌申请表格》</div><div class="tl-desc">下载路径：企业微信微盘 > 资遇行政指引 > 挂牌</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">表格正本交到公司</div><div class="tl-desc">连同一张HKD420的缴费支票</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">公司审核后交到积金局</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">积金局审核后支票扣费</div><div class="tl-desc">支票户口为单独户口，请确保有足够扣费金额</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">完成上牌后邮件通知</div></div>
+</div>`,
+      "费用与进修":`<div class="tip-box tip-info">
+<strong>注册附属中介人年费：</strong>HKD 180<br><br>
+<strong>持续专业进修要求：</strong><br>
+每公历年须参加15小时进修活动，其中4小时须为核心活动。<br><br>
+4月1日至6月30日注册：总时数12，核心4<br>
+7月1日至9月30日注册：总时数8，核心4<br>
+10月1日至12月31日注册：总时数0，核心0
+</div>`
+    }}
+  ]
+},
+
+account: {
+  title: "🔑 保司账号开通",
+  desc: "上牌后各保险公司账号创建流程与时效",
+  cards: [
+    {id:"acc1",title:"友邦（AIA）/ 中国人寿 / 立桥",status:"pending",tabs:{
+      "创建时效":`<div class="tag tag-ok">3个工作天</div>
+<p style="margin-top:10px;font-size:13px">账号创建后三个工作天内将收到保司电邮通知，请查看保司对应的邮箱。</p>`,
+      "详细说明":`<div style="font-size:13px;line-height:1.8">
+<strong>🔵 立桥</strong><br>
+账户默认为zuuins邮箱，初始默认密码：<strong>PASe2022!</strong><br>
+⚠️ 7天内请自行登入，否则密码过期需重置。<br><br>
+<strong>🔵 友邦</strong><br>
+ins邮箱收到账户名称，点击启动账户自行设置密码。<br>
+如未收到邮件，账户默认格式：<strong>36817-名_姓</strong>（大写英文拼音）<br>
+例：36817-JIELUN_ZHOU / 36817-CHENGLONG_CHENG<br>
+⚠️ 签内地单必须先完成测试：电子服务 > i学院 > 网上学习 > 抵港内地人士相关课程<br><br>
+<strong>🔵 中国人寿</strong><br>
+账号创建后3个工作天收到电邮通知。
+</div>`
+    }},
+    {id:"acc2",title:"宏利",status:"pending",tabs:{
+      "创建时效":`<div class="tag tag-info">7个工作天</div>
+<p style="margin-top:10px;font-size:13px">创建后七个工作天内将收到保司电邮通知。</p>`
+    }},
+    {id:"acc3",title:"保诚",status:"pending",tabs:{
+      "创建时效":`<div class="tag tag-warn">3-4周</div>
+<p style="margin-top:10px;font-size:13px">七天内提交申请（保诚审批需时，约3-4周收到邮件）</p>`
+    }},
+    {id:"acc4",title:"万通 ⭐ 需预先填资料",status:"pending",tabs:{
+      "创建时效":`<div class="tag tag-warn">约2周</div>`,
+      "所需资料":`<div class="checklist">
+<li><div class="check-box" data-id="acc4-1"></div><div>❶ 姓名中英文（需与身份证一致）</div></li>
+<li><div class="check-box" data-id="acc4-2"></div><div>❷ 香港身份证号码</div></li>
+<li><div class="check-box" data-id="acc4-3"></div><div>❸ 保监牌照号码</div></li>
+<li><div class="check-box" data-id="acc4-4"></div><div>❹ 香港电话号码</div></li>
+<li><div class="check-box" data-id="acc4-5"></div><div>❺ 是否有亲属在万通任职？</div></li>
+<li><div class="check-box" data-id="acc4-6"></div><div>❻ 是否曾被保险业监管协会处罚？</div></li>
+<li><div class="check-box" data-id="acc4-7"></div><div>❼ INS公司电邮地址</div></li></div>
+<div class="tip-box tip-warn" style="margin-top:10px">
+需预先填资料及两份表格（企微可下载），连同上述资料电邮至：<br><strong>ling.chung@zuuins.com.hk</strong><br>同事收到后统一发给万通处理。
+</div>`
+    }},
+    {id:"acc5",title:"安盛 ⭐ 需培训",status:"pending",tabs:{
+      "创建时效":`<div class="tag tag-danger">培训后约3周</div>
+<p style="margin-top:10px;font-size:13px">需参加安盛组织的IPOS课堂及网上考试（每月一次），完成后账号于三周内启用。</p>`
+    }},
+    {id:"acc6",title:"太保 ⭐ 需自行申请",status:"pending",tabs:{
+      "申请方式":`<p style="font-size:13px">需由个人网站发起申请后，在群内通知团队长/团队长秘书。</p>
+<div class="tip-box tip-info">申请网址：<br>https://nsp.cpiclifehk.com.hk/#/web/advisorlogin</div>`
+    }},
+    {id:"acc7",title:"周大福 ⭐ 需提前通知",status:"pending",tabs:{
+      "说明":`<div class="tip-box tip-warn">签单时需要提前<strong>两个工作日</strong>通知团队长/团队长秘书。</div>`
+    }},
+    {id:"acc8",title:"暂无个人账户的保司",status:"pending",tabs:{
+      "保司列表":`<div style="font-size:14px;line-height:2">
+以下保司暂无个人账户：<br>
+<span class="tag tag-info">富卫</span>
+<span class="tag tag-info">中银</span>
+<span class="tag tag-info">安达</span>
+<span class="tag tag-info">永明</span>
+<span class="tag tag-info">太平</span>
+<span class="tag tag-info">忠意</span>
+<span class="tag tag-info">蓝十字</span></div>
+<div class="tip-box tip-info" style="margin-top:10px">行政部人手有限，请耐心等待。如有着急签单，请在上牌时提前说明！</div>`
+    }}
+  ]
+},
+
+lifebee: {
+  title: "📱 LifeBee APP",
+  desc: "业务管理工具 — 售前·售中·售后全覆盖",
+  cards: [
+    {id:"lb1",title:"LifeBee 功能概览",status:"pending",tabs:{
+      "四大模块":`<div class="company-grid">
+<div class="company-item"><div class="company-name">01 售前·营销工具</div><div class="company-detail">市场优惠资讯 · 保险公司 · 产品对比 · 保费试算 · 计划书(AI) · 计划书对比 · 财务需求分析(FNA)</div></div>
+<div class="company-item"><div class="company-name">02 售中·签单工具</div><div class="company-detail">预售客户 · 预约签单 · 新单跟进(AI) · 保单查询 · 保费到期(AI)</div></div>
+<div class="company-item"><div class="company-name">03 售后·运营工具</div><div class="company-detail">服务咨询 · 资料云盘 · 知识库 · 分享统计 · 智能合约 · 介绍费（佣金）</div></div>
+<div class="company-item"><div class="company-name">04 底部菜单</div><div class="company-detail">消息 · 日程 · 关系 · 我的</div></div>
+</div>`,
+      "公司资料云盘":`<div style="font-size:13px;line-height:1.8">
+LifeBee公司资料云盘包含以下内容：<br>
+· 直营面积金额编排进入路线<br>
+· ZUU直营保险经纪公司介绍<br>
+· Lifebee操作指引<br>
+· 保险石期服务 · 保险公司介绍（新旧版）<br>
+· 感恩指引 · 营销保障 · 多元货币叠加对照<br><br>
+<strong>📌 编码说明：</strong><br>
+INS公司LifeBee编码：<strong>W168</strong><br>
+Digital公司LifeBee编码：<strong>ZUU</strong>
+</div>`,
+      "查看路径":`<div class="tip-box tip-info">
+完整LifeBee APP操作帮助请查阅：<br>
+· 企业微信微盘：直营百科大全 > 资遇行政指引 > LifeBee APP操作帮助<br>
+· LifeBee资料云盘：Lifebee操作指引 > LifeBee APP操作帮助
+</div>`
+    }}
+  ]
+},
+
+signing: {
+  title: "✍️ 签单投保",
+  desc: "从投保前准备到投保后跟进的全流程指引",
+  cards: [
+    {id:"sg0",title:"⭐ 签单服务群建群流程（预约必看）",status:"pending",tabs:{
+      "7步流程":`<div class="timeline">
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">第一步：创建群聊、拉对接员入群</div><div class="tl-desc">群成员：团队秘书 + 预约专员 + 业务部主任 + CS专员 + 保单管理部主任 + 对账专员 + Pending专员 + 人力小管家 + 提交预约的顾问（如果是IFA）+ 签单的IFA + 顾问的直系辅导人</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">第二步：转移群主（给人力小管家）</div><div class="tl-desc">人力小管家：@人力小管家-Sharon(Sharon)</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">第三步：修改群名</div><div class="tl-desc">群名格式：<strong>【新单待定】投保人姓名-YYMMDD-保司x投保单数-储蓄（&重疾/医疗）</strong><br><br>
+<strong>建群3+2+1要素：</strong><br>
+3指：标注"投保人姓名、签单日期、保司名称"<br>
+2指：标注"投保单数、产品类型"<br>
+1指：标注特别需要注意的事项（如预缴、特殊折扣）<br><br>
+⚠️ 满足"同一个投保人、同一天签单、同一家保司"才能在同一个签单服务群对接<br>
+⚠️ 如保单预缴保费，群名标注后缀"-预缴"<br>
+⚠️ 如保单申请特殊折扣，群名标注后缀"-特殊折扣"，并提前一个工作日在企微工作台审批处提交申请</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">第四步：发送顾问已填写好的预约模板</div><div class="tl-desc">【意向投保申请信息】包含：提交预约的顾问、签单的IFA、意向保司、签约开始时间（YYYYMMDD+时间点）、意向签约地点（保司/公司/外出签单）、投保人、受保人、意向产品（名称+缴费年期）、首期保费（金额+货币）、总保额<br><br>
+备注项：1.是否预缴 2.是否回溯（仅危疾保障）3.客户身份（HK永居/HK非永居/仅大陆身份）4.是否资遇老客户 5.是否需要预约CS</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">第五步：置顶预约模板</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">第六步：@预约专员 对接</div><div class="tl-desc">预约专员为您预约签单房、CS（如需）后，会及时将预约签单日程共享至签单服务群，并将群名状态【新单待定】修改为【新单】</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">第七步：提醒顾问填写【签单信息收集表】</div><div class="tl-desc">签单结束后提醒顾问点击链接填写<br>
+⚠️ 重要提醒（保诚&安盛）：签单后的电子投保文件需要及时从电子签单系统导出，并上传至【签单信息收集表】的附件处<br>请务必尽量签单当天提交！</div></div>
+</div>`,
+      "群名示例":`<div style="font-size:13px;line-height:2">
+<strong>例1：</strong>同一投保人同一天在同一家保司，投保1份保单；投保储蓄险<br>
+群名：<span class="tag tag-info">【新单待定】张三-260101-友邦x1-储蓄</span><br><br>
+<strong>例2：</strong>同一投保人同一天在同一家保司，投保3份保单；投保储蓄险及医疗险；其中一张储蓄险预缴保费<br>
+群名：<span class="tag tag-warn">【新单待定】张三-260101-保诚x3-储蓄&医疗-预缴</span><br><br>
+<strong>例3：</strong>同一投保人同一天在同一家保司，投保3份保单；投保储蓄险及重疾险；其中一张储蓄险申请特殊折扣<br>
+群名：<span class="tag tag-danger">【新单待定】张三-260102-万通x3-储蓄&重疾-特殊折扣</span><br><br>
+⚠️ 请严格按照群名格式命名；如果投保人并非同一人、或者不在同一家保司/不在同一天签单，请务必另建群聊，以免行政对接错漏导致保单生效延误。
+</div>`,
+      "签单服务人员清单":`<div style="font-size:13px;line-height:2">
+<div class="contact-card"><span class="contact-name">Sherry</span><span class="contact-role">预约专员</span></div>
+<div class="contact-card"><span class="contact-name">Tina</span><span class="contact-role">业务部主任 · 保单业务</span></div>
+<div class="contact-card"><span class="contact-name">Bobo</span><span class="contact-role">CS专员</span></div>
+<div class="contact-card"><span class="contact-name">Alfred</span><span class="contact-role">保单管理部主任 · 保单行政</span></div>
+<div class="contact-card"><span class="contact-name">Carmen</span><span class="contact-role">对账专员（缴费后@发对账邮件对账）</span></div>
+<div class="contact-card"><span class="contact-name">Annie</span><span class="contact-role">对账专员</span></div>
+<div class="contact-card"><span class="contact-name">Alfred</span><span class="contact-role">Pending专员</span></div>
+<div class="contact-card"><span class="contact-name">Sharon</span><span class="contact-role">人力小管家</span></div>
+<br><br>
+<div class="tip-box tip-danger">
+⚠️ 请勿拉其他无关人员入群<br>
+⚠️ 如需签单辅导（CS），必须经由预约组安排确定CS人选。请勿未经预约组安排私联CS指定签单。
+</div>
+</div>`
+    }},
+    {id:"sg1",title:"投保前准备",status:"pending",tabs:{
+      "团队助理准备":`<div class="checklist">
+<li><div class="check-box" data-id="sg1-1"></div><div><strong>建群</strong>（参照「签单服务群建群流程」）</div></li>
+<li><div class="check-box" data-id="sg1-2"></div><div><strong>发预约表</strong>（需备注是否需要付费签单员 500HKD/次）</div></li>
+<li><div class="check-box" data-id="sg1-3"></div><div><strong>协助预约保司签单室/家办会客厅</strong></div></li>
+<li><div class="check-box" data-id="sg1-4"></div><div><strong>发行程单</strong></div></li>
+<li><div class="check-box" data-id="sg1-5"></div><div><strong>准备投保产品资料</strong>（产品资料册、预缴优惠单、季度优惠单、产品计划书）</div></li>
+<li><div class="check-box" data-id="sg1-6"></div><div><strong>准备投保公司银行转账相关资料</strong></div></li></div>`,
+      "持牌人准备":`<div class="checklist">
+<li><div class="check-box" data-id="sg1-7"></div><div><strong>填写预约表发给助理</strong>（时间、地点、是否需要签单员500HKD/次）</div></li>
+<li><div class="check-box" data-id="sg1-8"></div><div><strong>提醒客户准备相关资料：</strong><br>身份证、通行证/护照、入境小白条<br>若给18岁以下未成年人投保需携带出生证或户口本<br>如投保健康险准备过往体检报告</div></li></div>`,
+      "投保确认信息":`<div class="company-grid">
+<div class="company-item"><div class="company-name">客户相关资料</div><div class="company-detail">身份证 · 通行证/护照 · 入境小白条 · 若给18岁以下未成年人投保需带出生证或户口本 · 如投保健康险准备过往体检报告</div></div>
+<div class="company-item"><div class="company-name">准备投保信息</div><div class="company-detail">投保申请书 · FNA · 内地人投保重要声明 · 中介人表格 · 补充资料表格 · 公司内部E-Form</div></div>
+<div class="company-item"><div class="company-name">投保产品资料</div><div class="company-detail">产品资料册 · 预缴优惠单 · 季度优惠单 · 缴费指引</div></div>
+</div>`
+    }},
+    {id:"sg2",title:"投保中 — 签单室签约",status:"pending",tabs:{
+      "操作步骤":`<div class="checklist">
+<li><div class="check-box" data-id="sg2-1"></div><div><strong>保司签单室/家办会客室签约</strong><br>a. 复印客户证件<br>b. 大陆居民投保进行客户认证<br>c. 核对投保申请书资料并签字提交<br>d. 签署公司内部表格LifeBee内E-Form<br>e. 补充资料表格/修证书</div></li>
+<li><div class="check-box" data-id="sg2-2"></div><div><strong>让客户选择缴付首期保费方式</strong><br>现金、信用卡、银行转账、电汇等</div></li>
+<li><div class="check-box" data-id="sg2-3"></div><div><strong>持牌人自行选择安排客户银行开户</strong></div></li></div>`,
+      "注意事项":`<div class="tip-box tip-warn">
+<strong>E-Form编码：</strong><br>
+· INS公司LifeBee编码：<strong>W168</strong><br>
+· Digital公司LifeBee编码：<strong>ZUU</strong><br><br>
+补充资料表格/修证书下载路径：<br>企业微信微盘 > 直营百科大全 > 保司行政资料 > 对应保司内投保文件
+</div>`
+    }},
+    {id:"sg3",title:"投保后跟进",status:"pending",tabs:{
+      "持牌人跟进":`<div class="checklist">
+<li><div class="check-box" data-id="sg3-1"></div><div><strong>将投保相关资料递交公司审核</strong>（3天内）</div></li>
+<li><div class="check-box" data-id="sg3-2"></div><div><strong>整理签单信息发给助理</strong>（2天内）</div></li>
+<li><div class="check-box" data-id="sg3-3"></div><div><strong>整理签单缴费信息及注意事项发给客户</strong></div></li>
+<li><div class="check-box" data-id="sg3-4"></div><div><strong>跟进核保事项</strong></div></li>
+<li><div class="check-box" data-id="sg3-5"></div><div><strong>协助客户完成缴费</strong><br>a. 如转账或电汇需备注保单号码<br>b. 缴费完成后将缴费凭证及客户银行账户月结单证明发送至各保司邮箱<br>c. 缴费如涉及一次性预缴需注意各保险公司的预缴时限</div></li>
+<li><div class="check-box" data-id="sg3-6"></div><div><strong>签收保单</strong><br>a. 纸本保单：部分寄到公司后由持牌人自费寄给客户，部分保司直接寄给客户<br>b. 电子保单直接发送至客户邮箱或保司APP内查看</div></li></div>`,
+      "缴费对账要点":`<div class="tip-box tip-danger">
+<strong>‼️ 缴费之后必须提供缴费凭证给公司，由公司负责给保险公司对账！</strong><br>
+否则保费很难入账/很难通过核保审查。<br><br>
+<strong>特别注意：</strong><br>
+· 保诚电汇需附上电汇表格<br>
+· 安盛需附上缴款单<br>
+· 万通如使用支票、本票、银联卡及信用卡付款需递交G04表格<br>
+· 缴付账单缴费建议不超过10万港币
+</div>`
+    }}
+  ]
+},
+
+pending: {
+  title: "⏳ PENDING处理",
+  desc: "保司核保过程中需配合完成的待办事项",
+  cards: [
+    {id:"pd1",title:"什么是PENDING",status:"pending",tabs:{
+      "说明":`<div style="font-size:14px;line-height:1.8">
+<strong>PENDING</strong> = 保司在核保过程中需要配合完成的待办事项，包括但不限于：<br><br>
+<span class="tag tag-warn">补交身份证明文件</span>
+<span class="tag tag-warn">补充资料表格</span>
+<span class="tag tag-warn">财务证明文件</span>
+<span class="tag tag-warn">健康声明等等</span><br><br>
+<strong>为什么会有PENDING：</strong><br>
+在签单过程中难免出现一些不可抗力所造成的错漏：客户证件不齐、提供的信息不全、保司核保要求更新等等。<br><br>
+遇到PENDING不需要担心，看看保司需要我们配合提供什么资料，通常PENDING的回复时效在<strong>1个月</strong>左右，在规定的时间内完成即可。
+</div>`
+    }},
+    {id:"pd2",title:"PENDING处理流程",status:"pending",tabs:{
+      "流程":`<div class="timeline">
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">对账专员每日查询PENDING</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">如有更新：将Underwriting Notice翻译并发送至对应的签单群</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">PENDING专员协助顾问处理PENDING</div><div class="tl-desc">解释出现PENDING的原因，协助顾问处理</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">电邮回复保险公司 / 纸本回复（每日下午5点出街）</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">群组内通知顾问经已处理</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">如无更新：提醒顾问及时处理未跟进之PENDING</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">PENDING已清：更新群组核保状态</div></div>
+</div>`,
+      "联系人":`<div style="display:flex;flex-wrap:wrap;gap:8px">
+<div class="contact-card"><span class="contact-name">Alfred</span><span class="contact-role">Pending专员 / 保单管理部主任</span></div>
+<div class="contact-card"><span class="contact-name">Carmen</span><span class="contact-role">对账专员（每日查询PENDING并发送核保通知）</span></div>
+</div>
+<div class="tip-box tip-info" style="margin-top:12px">
+<strong>快速处理小贴士：</strong><br>
+✅ 仔细阅读保司的PENDING要求<br>
+✅ 及时收集和准备所需资料<br>
+✅ 遇到疑问联系专员协助<br>
+✅ 可在签单群组@Alfred 协助处理PENDING事宜
+</div>`
+    }}
+  ]
+},
+
+pos: {
+  title: "📬 保单交付 POS",
+  desc: "各保司纸本保单申请、邮寄方式及回执签收规则",
+  cards: [
+    {id:"pos0",title:"保单行政全流程",status:"pending",tabs:{
+      "核保阶段":`<div class="timeline">
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">1. 建立保单服务群</div><div class="tl-desc">群名格式：持有人-公司-产品类型（储蓄/危疾/医疗）-签单日期<br>需加入内勤：Alfred、Carmen<br>保单服务群保留18个月</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">2. 核保通知</div><div class="tl-desc">Carmen 定时发送核保通知书(PENDING)到签单群组并@相关顾问</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">3. PENDING处理</div><div class="tl-desc">可@Alfred 协助</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">4. 首期保费对账</div><div class="tl-desc">Carmen 协助顾问进行首期保费对账</div></div>
+</div>`,
+      "售后阶段":`<div class="timeline">
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">5. 生效通知</div><div class="tl-desc">PENDING清除且首期保费成功入账后，Carmen会在群组内发生效通知</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">6. 售后对接</div><div class="tl-desc">保单服务群在保单生效后保留18个月，顾问可在群内对接所有售后事宜</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">7. POS内容包括</div><div class="tl-desc">保全业务（保单架构变更、保单价值提取、理赔、退保等）· 续期缴费 · 纸质保单合同邮寄 · 转单 · AML checking</div></div>
+</div>`
+    }},
+    {id:"pos1",title:"通用保单交付规则",status:"pending",tabs:{
+      "核心规则":`<div class="tip-box tip-danger">
+<strong>⚠️ 写在前面（重要）</strong><br>
+· 保险公司一般投保时选择了电子合同，则不会再邮寄纸质合同<br>
+· 不建议修改邮寄地址，按默认方式处理最方便且最合规<br>
+· 保单生效后，保险公司预计<strong>7-14个工作日</strong>会发出保单（宏利需<strong>14-21个工作日</strong>）<br>
+· 根据保监局合规要求，保单需在缮发后<strong>9个自然日</strong>内送至客户手中<br>
+· 保单在公司最多停留<strong>5个自然日</strong>，超期未领取将直接寄出<br>
+· 没有签回保单签收回执，有机会影响佣金发放或产生行政费！
+</div>`,
+      "ZUU转寄保司":`<div style="font-size:13px;line-height:2">
+由ZUU转寄保单的公司：<br>
+<span class="tag tag-info">保诚</span>
+<span class="tag tag-info">周大福</span>
+<span class="tag tag-info">永明</span>
+<span class="tag tag-info">富卫</span>
+<span class="tag tag-info">立桥</span>
+<span class="tag tag-info">忠意</span>
+<span class="tag tag-info">安达</span>
+<span class="tag tag-info">恒安标准</span><br>
+以及客户通讯地址在香港的：
+<span class="tag tag-warn">安盛</span>
+<span class="tag tag-warn">万通</span>
+<span class="tag tag-warn">宏利</span>
+<span class="tag tag-warn">苏黎世</span>（如申请了纸质合同）<br><br>
+<strong>邮寄流程：</strong>办公室收到纸本保单后会在签单群内通知顾问，若没有提前告知"顾问代领"，将<strong>默认邮寄</strong>（收到后第二天顺丰快递寄出）。
+</div>`,
+      "必须签收回执":`<div class="tip-box tip-danger">
+<strong>⚠️ 要求必须签收回执的公司：</strong><br>
+· <strong>友邦-B单</strong>：电子签收截图发到签单群<br>
+· <strong>万通-香港及海外通讯地址客户</strong>：电子签收截图发到签单群<br>
+· <strong>恒安标准</strong>：纸质文件拍照发到签单群（IFA和客户双方都需签署）
+</div>
+<div class="tip-box tip-info">
+其他保司虽未强制要求，但建议客户收到保单后拍照保单首页等基础信息页作为回执发回签单群内。
+</div>`
+    }},
+    {id:"pos2",title:"各保司详细交付规则",status:"pending",tabs:{
+      "友邦AIA":`<div style="font-size:13px;line-height:1.8">
+<strong>纸本保单申请：</strong>在eapp文件填写时注意选择"接收纸本保单合约"（注意区分"合约"和"证书"）<br><br>
+<strong>邮寄方式：</strong><br>
+· 内地地址（G单）：保司通过顺丰直寄客户通讯地址（签发后4个工作天内）<br>
+· 香港地址（B单）：香港邮政递送<br>
+· 非香港地址（B单）：顺丰物流寄送<br><br>
+<strong>回执签收：</strong><br>
+· G单：客户收到后拍照保单资料页发回签单群<br>
+· B单：客户打开AIA+完成电子签收并截图（保单缮发3个工作日后上传AIA+）
+</div>`,
+      "保诚":`<div style="font-size:13px;line-height:1.8">
+<strong>纸本保单申请：</strong>选择"电子保单合约及纸张保单合约副本"<br><br>
+<strong>邮寄方式：</strong>全部由ZUU转交<br><br>
+<strong>回执签收：</strong>拍照保单首页作为回执发回签单群内
+</div>`,
+      "宏利":`<div style="font-size:13px;line-height:1.8">
+<strong>纸本保单申请：</strong>必须填写纸质RC01表格（无论电子或纸质投保）<br>
+⚠️ 保单缮发30日内递交RC01=免费；超30日需递交T02表格+200HKD行政费<br><br>
+<strong>邮寄方式：</strong><br>
+· 内地通讯地址：保司直寄（14-21个工作日寄出）<br>
+· 香港及海外通讯地址：ZUU转交<br><br>
+<strong>回执签收：</strong>客户登录宏利APP已读保单即算签收完成（推荐），截图发回群内
+</div>`,
+      "万通/安盛/周大福":`<div style="font-size:13px;line-height:1.8">
+<strong>🔵 万通</strong><br>
+内地客户由DHL直寄，香港及海外由ZUU转交<br>
+⚠️ 根据保司要求客户必须在APP进行电子签收，9天内不签收会再邮寄一份纸质保单<br><br>
+<strong>🔵 安盛</strong><br>
+内地通讯地址由保司顺丰直寄，可登录安盛后台查询单号<br>
+香港及海外客户由ZUU转交<br><br>
+<strong>🔵 周大福</strong><br>
+纸本保单全部由ZUU转交
+</div>`,
+      "其他保司":`<div style="font-size:13px;line-height:1.8">
+<strong>🔵 富卫</strong> — 全部ZUU转交，客户可扫码纸本保单二维码签收<br>
+<strong>🔵 忠意</strong> — 全部ZUU转交<br>
+<strong>🔵 永明</strong> — 全部ZUU转交（勾选列印版本）<br>
+<strong>🔵 国寿</strong> — 内地顺丰直寄，香港邮局挂号信<br>
+<strong>🔵 中银</strong> — 内地顺丰直寄（【快递】仅适用内地地址，香港选【邮寄】）<br>
+<strong>🔵 安达</strong> — 全部ZUU转交（注意投保书第16页勾选纸本选项）<br>
+<strong>🔵 立桥</strong> — 内地客户务必选择"通过保险中介递送"<br>
+<strong>🔵 恒安标准</strong> — 全部ZUU转交（IFA和客户双方都需签回执）<br>
+<strong>🔵 苏黎世</strong> — 内地保司直寄，香港及海外ZUU转交（默认纸质保单）<br>
+<strong>🔵 太平/太平洋</strong> — 全部保司直寄（默认纸质保单）
+</div>`
+    }}
+  ]
+},
+
+transfer: {
+  title: "🔄 转经纪公司",
+  desc: "客户从其他经纪公司转至ZUU的流程指引",
+  cards: [
+    {id:"tf1",title:"客户转经纪公司流程",status:"pending",tabs:{
+      "总流程":`<div class="timeline">
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">客户确定转经纪公司需求</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">确定目标保司</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">基础文件准备</div><div class="tl-desc">1. ZUU公司表格填写（E-FORM）<br>2. 客户身份证复印件</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">各保司对应表格</div><div class="tl-desc">保诚：变更服务提供者文件（ZUU草拟）<br>AIA：电子递交，没有表格<br>周大福：周大福固定表格<br>安盛：安盛固定表格<br>忠意：变更服务提供者文件（ZUU草拟）<br>其他：保司官网下载或ZUU草拟</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">提交至公司 Tina & Summer 处</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">提交至保险公司</div></div>
+</div>`,
+      "注意事项":`<div class="tip-box tip-danger">
+<strong>⚠️ 重要提醒</strong><br>
+1. 一单填一份资料<br>
+2. 因公司没有过往客户的资料，所有转至ZUU的单，均需所属持牌人对保单负责，包括后续售后服务
+</div>
+<div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:8px">
+<div class="contact-card"><span class="contact-name">Tina</span><span class="contact-role">转经纪公司</span></div>
+<div class="contact-card"><span class="contact-name">Summer</span><span class="contact-role">转经纪公司</span></div>
+</div>`
+    }}
+  ]
+},
+
+referral: {
+  title: "🤝 转介合作",
+  desc: "转介合作协议核心要点",
+  cards: [
+    {id:"rf1",title:"转介合作协议要点",status:"pending",tabs:{
+      "协议概述":`<div style="font-size:13px;line-height:1.8">
+<strong>甲方：</strong>资遇保险经纪有限公司 ZUU Insurance Brokerage Limited<br>
+<strong>乙方：</strong>转介人/合作方<br><br>
+<strong>总则：</strong>甲乙双方本着团结合作、互惠互利的精神，由乙方不时转介客户予甲方，并由甲方协助客户安排财富管理产品的交易。
+</div>`,
+      "甲方承诺":`<div style="font-size:13px;line-height:1.8">
+· 按协议支付转介费予乙方<br>
+· 就乙方转介的客户尽其责任进行财富管理产品的推销及说明<br>
+· 不得在未经乙方或客户同意下将客户转介予其他金融服务提供者
+</div>`,
+      "乙方承诺":`<div style="font-size:13px;line-height:1.8">
+· 角色仅限于介绍客户，不得代表甲方进行任何营销活动<br>
+· 不得在任何公开文件中出现甲方及保险公司的资料<br>
+· 不得就特定产品向客户提供意见或建议<br>
+· 需全面配合甲方的背景调查工作
+</div>`,
+      "转介费":`<div style="font-size:13px;line-height:1.8">
+· 每月方式结算，甲方收到保司费用后下一个月5日及20日支付<br>
+· 支付形式：支票或存入乙方指定香港银行账户<br>
+· 如财富管理产品被取消或终止，乙方须按弥偿期的长短按比例计算退还转介费
+</div>`
+    }}
+  ]
+},
+
+cpd: {
+  title: "📚 CPD / 续签 / MPF",
+  desc: "持续专业进修、签证续签、自雇人士MPF指引",
+  cards: [
+    {id:"cpd1",title:"CPD持续专业培训",status:"pending",tabs:{
+      "要求":`<div style="font-size:13px;line-height:1.8">
+根据保险业监管局（IA）指引：<br>
+持牌人每年必须完成最少<strong>15个CPD时数</strong>，当中须包括最少<strong>3个「道德与规例」</strong>培训时数。<br><br>
+<strong>新上牌人士按首次上牌月份所需学分：</strong>
+</div>
+<table class="data-table" style="margin-top:10px">
+<tr><th>获发牌照月份</th><th>最低CPD总数</th><th>道德或规例最低时数</th></tr>
+<tr><td>八月至十月</td><td>12</td><td>3</td></tr>
+<tr><td>十一月、十二月、一月</td><td>6</td><td>3</td></tr>
+<tr><td>二月至七月</td><td>0</td><td>0</td></tr>
+</table>`,
+      "报名途径":`<div style="font-size:13px;line-height:1.8">
+<strong>1. 保司内部免费课程</strong> — 留意邮箱或群内通知<br><br>
+<strong>2. 外部自费（主要平台）：</strong><br>
+· 高峰进修学院 peak.edu.hk<br>
+· IFPHK ifphk.org/CEP/ce-calendar<br>
+· PiBA piba.org.hk/cpd-course<br>
+· HKCIB hkcib.org/seminars<br>
+· Train On Top trainontop.oneplatform.com.hk<br>
+· HKECC hkeedu.com
+</div>`,
+      "申报":`<div class="tip-box tip-info">
+<strong>申报方式：</strong><br>
+在规定时间内修完15个学分后自己进行申报：<br>
+登入"保险中介一站通账号" > 选择"持续专业培训声明" > 选择是否已完成规定学分要求 > 点"同意" > 最后"提交"<br><br>
+评核期：每年8月1日至翌年7月31日<br>
+申报期：每年8月1日至翌年9月30日<br>
+⚠️ 超过规定时数不可转入下一年度<br>
+⚠️ 需保存证据3年内以应保监合规核查
+</div>`
+    }},
+    {id:"cpd2",title:"签证续签指引",status:"pending",tabs:{
+      "条件":`<div style="font-size:13px;line-height:1.8">
+根据入境事务处「非本地毕业生留港/回港就业安排」指引，持证人须于逗留期限届满前4星期向入境事务处申请延长逗留期限。<br><br>
+公司将会协助有关TR办理签证续期申请，但TR必须符合以下规定：<br>
+a. 过去12个月（或以较短者计算）平均每月收入必须高于港币<strong>$15,000</strong>（个人课税Taxable Income）<br>
+b. 个人续保率不少于<strong>85%</strong>
+</div>`,
+      "流程":`<div class="timeline">
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">TR本人在入境处提交续签申请</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">将申请密钥信息发给公司</div><div class="tl-desc">由HR提交公司部分所需资料</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">入境处审批</div></div>
+<div class="tl-item"><div class="tl-dot"></div><div class="tl-title">续签完成后最新签证提交给公司备份</div></div>
+</div>
+<div class="tip-box tip-info" style="margin-top:10px">若需公司提供在职证明及有关人事证明请在服务群内跟助理说明，由助理跟HR部门申请。</div>`
+    }},
+    {id:"cpd3",title:"自雇人士MPF指引",status:"pending",tabs:{
+      "说明":`<div style="font-size:13px;line-height:1.8">
+强积金计划规定，须于成为自雇人士的首<strong>60日</strong>内自行选择强积金计划，以开立一个强积金自雇人士的账户。<br><br>
+没有登记者，初犯者最高可被处以罚款<strong>$50,000</strong>及监禁六个月，其后每次定罪最高可被处以罚款<strong>$100,000</strong>及监禁一年。<br><br>
+<strong>注册积金易账户途径：</strong><br>
+a. 网页注册<br>
+b. APP注册（积金易 eMPF）<br><br>
+注册时选择「成员」身份，细阅通告并按「继续」完成注册。
+</div>`
+    }}
+  ]
+},
+
+support: {
+  title: "💬 沟通与资源",
+  desc: "企微群组、资料库、培训平台汇总",
+  cards: [
+    {id:"sp1",title:"沟通机制 — 群组一览",status:"pending",tabs:{
+      "上牌前":`<div style="font-size:13px;line-height:1.8">
+<strong>ZUU家办直营|准新人答疑协助群：</strong>允许正在洽谈的准新人入群了解ZUU<br>
+<strong>ZUU 家办渠道伙伴答疑协助群：</strong>允许已签约渠道入群
+</div>`,
+      "企微运营群":`<div style="font-size:13px;line-height:1.8">
+<strong>直营｜圆桌会：</strong>允许已挂牌/IA已缴费状态的持牌人入群<br><br>
+<strong>各个团队内部群：</strong>遵循各团队长内部要求入群<br>
+① ZUU持牌人 | Freedom团队<br>
+② Cen Trust 心诚保险经纪人团队<br>
+③ ZUU直营 - ELITE团队<br>
+④ T+V直营团队上牌协助<br>
+⑤ ZUU持牌人 - Shine团队
+</div>`,
+      "家办群":`<div style="font-size:13px;line-height:1.8">
+允许已完成上牌的持牌人入群：<br><br>
+<strong>比元家办群：</strong>ZUU & 比元家办群<br>
+<strong>升学中心群：</strong>ZUU直营X升学中心<br>
+<strong>身份规划群：</strong>ZUU直营X普晖交流群<br>
+<strong>香港地产群：</strong>比元 X 资遇地产业务<br>
+<strong>信托群：</strong>四季度建立
+</div>`,
+      "保司群":`<div style="font-size:13px;line-height:1.8">
+允许已完成上牌的持牌人入群：<br>
+<span class="tag tag-info">安盛</span>
+<span class="tag tag-info">保诚</span>
+<span class="tag tag-info">万通</span>
+<span class="tag tag-info">国寿</span>
+<span class="tag tag-info">中银(BOC)</span>
+<span class="tag tag-info">立桥</span>
+<span class="tag tag-info">太平洋</span>
+<span class="tag tag-info">苏黎世</span>
+<span class="tag tag-info">BUPA</span>
+<span class="tag tag-info">安达</span><br><br>
+保司资料详情请查看LifeBee APP资料云盘或企业微信微盘：<br>
+直营百科大全 > 保司产品资料 & 保司行政资料
+</div>`
+    }},
+    {id:"sp2",title:"资料库与培训平台",status:"pending",tabs:{
+      "直营企业微盘":`<div style="font-size:13px;line-height:1.8">
+涵盖：保司资料、保费融资、公司投保、合规、家办各板块、利益演示对比图、新人班及进阶培训资料、平台与基本法介绍、直营专属方案、月度行事历、直营佣金表等一应俱全。
+</div>`,
+      "企微智能客服群":`<div style="font-size:13px;line-height:1.8">
+此群内已介入AI助理，根据资料库内问题进行提问@ZEUS-GPT会自动回复。<br><br>
+问题描述指引详情请参考企业微信微盘：直营百科大全 > 智能客服异议处理库
+</div>`,
+      "新人培训":`<div style="font-size:13px;line-height:1.8">
+<strong>新人启航课（课程表）：</strong><br>
+<strong>新人班1.0：</strong><br>
+第一节：《香港保险市场及渠道介绍》<br>
+第二节：《100%成交公式》<br>
+第三节：《香港保险产品储蓄及优势》<br>
+第四节：《分红实例表及计划书解析》<br>
+第五节：《香港保险健康产品及优势》<br><br>
+<strong>新人班2.0：</strong><br>
+第一节：《看宏观-宏观分析及海外配置理念》<br>
+第二节：《看分红-香港分红运作原理与6.5%产品形态》<br>
+第三节：《看保额-三季度产品策略》<br>
+第四节：《看法商-法商视角下的推销实务逻辑》<br>
+第五节：《看红利-融资保单实务变辩》<br><br>
+查看路径：企业微信微盘 > 直营营销培训 > 培训资料 > 直营新人班<br>
+密码：6688<br><br>
+<strong>持牌人签单必修课：</strong>现有友邦、保诚、安盛、万通、太保电子签单培训视频<br>
+查看路径：企业微信微盘 > 直营营销培训 > 培训资料 > 签单培训<br>
+密码：6688
+</div>`
+    }}
+  ]
+},
+
+commission: {
+  title: "💰 佣金与晋升",
+  desc: "公司发佣安排及ZUU直营基本法",
+  cards: [
+    {id:"cm1",title:"公司发佣安排",status:"pending",tabs:{
+      "说明":`<div style="font-size:13px;line-height:1.8">
+每月<strong>5号</strong>和<strong>20号</strong>为发佣日。<br>
+发佣之前后3天左右会有对账单发送至TR/渠道邮箱。如出现漏发/错发将在下期补回。<br>
+一般会在保单冷静期结束后，公司收到保司佣金之后安排发佣。<br><br>
+<strong>渠道对账：</strong>为了减少结算中可能产生的纠纷，渠道收到对账单后必须确认，并电邮回复"收到"才会触发结算日自动打款。否则款项不发放。<br><br>
+<strong>持牌人对账：</strong>不需要确认，有异议2天内邮件回复，否则直接发放。
+</div>`
+    }},
+    {id:"cm2",title:"续期缴费提醒与对账",status:"pending",tabs:{
+      "提醒机制":`<div style="font-size:13px;line-height:1.8">
+公司层面在保单日期到来前会向顾问作出<strong>3次提醒</strong>：<br><br>
+第1次提醒：保单日期前<strong>60天</strong><br>
+第2次提醒：保单日期前<strong>20-30天</strong><br>
+第3次提醒：保单日期前<strong>10天</strong><br><br>
+当保单进入宽限期且客户仍未完成续期缴费时，还会作出<strong>2次提醒</strong>：<br>
+宽限期提醒①：保单日期后<strong>3天</strong><br>
+宽限期提醒②：宽限期结束前<strong>10天</strong>
+</div>`,
+      "续期对账":`<div style="font-size:13px;line-height:1.8">
+续期缴费对账邮件发送至公司续期对账邮箱：<br>
+<strong>Renewal@zuuins.com.hk</strong><br><br>
+<strong>邮件主题：</strong>【续期对账】+保单号<br><br>
+<strong>正文内容：</strong>付款人姓名、付款人账号、付款金额、保单号码、付款日期、收款人名称、收款人账号<br><br>
+⚠️ 如果是缴付账单，收款人账号写"缴付账单"<br>
+⚠️ 缴付账单的缴费凭证需显示参考编码/交易编码
+</div>`,
+      "特别注意":`<div class="tip-box tip-danger">
+<strong>‼️ 重要！必须！</strong><br>
+1. 保诚电汇需附上电汇表格<br>
+2. 安盛需附上缴款单<br>
+3. 万通如使用支票、本票、银联卡及信用卡付款需递交G04表格<br><br>
+缴费之后，请务必提供缴费凭证给公司，由公司负责给保险公司对账！否则保费很难入账/很难通过核保审查！
+</div>`
+    }},
+    {id:"cm3",title:"ZUU直营基本法 — 晋升体系",status:"pending",tabs:{
+      "A绩优篇":`<div style="font-size:13px;line-height:1.8">
+<strong>前台制度 - 基本法 - A绩优篇</strong>（以友邦X环X盈活5年缴25年11月举例）<br><br>
+<strong>财富管理经理 WMM（65.3%）</strong><br>
+从业者的初始身份，作为"新手村"阶段，专注于业务基础建设与客户积累<br><br>
+<strong>资深财富管理经理 BM（69.8%）</strong><br>
+个人标准保费(APE)累计到20万美元，达标后次月晋升<br>
+唯一考核：继续率≤95%下降一级（继续率上升当月回溯职级）<br><br>
+<strong>财富管理总监 DD（74.0%）</strong><br>
+个人标准保费(APE)累计到40万美元，达标后次月晋升<br><br>
+<strong>资深财富管理总监 SDD（78.5%）</strong><br>
+个人标准保费(APE)累计到160万美元，达标后次月晋升
+</div>`,
+      "B管理篇":`<div style="font-size:13px;line-height:1.8">
+<strong>晋升说明：</strong>自然季度晋升，满足人力架构与标准保费之要求。<br>
+<strong>申请方式：</strong>于每个自然季度最后15日内向公司提交《ZUU直营团队长晋升申请表》<br>
+<strong>义务：</strong>每月须出席至少两次团队长周例会<br>
+<strong>活跃人力：</strong>标准保费(APE) ≥ 1万美元<br><br>
+晋升通道：<strong>合伙人 → 高级合伙人 → 资深合伙人 → 区域合伙人</strong><br><br>
+⚠️ 职级原则上不会因业绩波动而下调。个人及团队的保单继续率需维持在90%至95%之间。
+</div>`,
+      "MDRT标准":`<div style="font-size:13px;line-height:1.8">
+<strong>MDRT 2026年标准（以标准保费测算结果，以MDRT协会结论为准）：</strong><br><br>
+<strong>会员：</strong>佣金 493,100 HKD / 年度保费约12万USD<br>
+<strong>内阁会员：</strong>佣金 1,479,300 HKD / 年度保费约36万USD<br>
+<strong>顶尖会员：</strong>佣金 2,958,600 HKD / 年度保费约72万USD<br><br>
+（测算案例友B、汇率1:7.75、25年Q2费率表）
+</div>`
+    }}
+  ]
+}
+};
+
+let currentModule = 'overview';
+let checkState = {};
+
+function init(){
+  try{ checkState = JSON.parse(localStorage.getItem('zuu_checks')||'{}'); }catch(e){ checkState={}; }
+  showModule('overview');
+}
+
+function saveChecks(){
+  try{ localStorage.setItem('zuu_checks', JSON.stringify(checkState)); }catch(e){}
+}
+
+function showModule(key){
+  currentModule = key;
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>{
+    if(n.getAttribute('onclick')&&n.getAttribute('onclick').includes("'"+key+"'")) n.classList.add('active');
+  });
+  const mod = DATA[key];
+  if(!mod) return;
+  let h = `<div class="page-title">${mod.title}</div><div class="page-desc">${mod.desc}</div>`;
+  if(mod.cards){
+    let total=0,done=0;
+    mod.cards.forEach(c=>{
+      const allChecks=[];
+      Object.values(c.tabs).forEach(html=>{
+        const m=html.match(/data-id="([^"]+)"/g);
+        if(m) m.forEach(x=>allChecks.push(x.match(/"([^"]+)"/)[1]));
+      });
+      total+=Math.max(allChecks.length,1);
+      const doneCount=allChecks.filter(id=>checkState[id]).length;
+      if(allChecks.length>0&&doneCount===allChecks.length) done+=allChecks.length;
+      else done+=doneCount;
+    });
+    const pct=total>0?Math.round(done/total*100):0;
+    h+=`<div class="progress-text">${done}/${total} 已完成 (${pct}%)</div><div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:${pct}%"></div></div>`;
+    mod.cards.forEach(c=>{
+      const tabKeys=Object.keys(c.tabs);
+      const statusClass=getCardStatus(c);
+      h+=`<div class="card"><div class="card-header" onclick="toggleCard(this)">
+        <div class="card-status ${statusClass}"></div>
+        <div class="card-title">${c.title}</div>
+        <div class="card-toggle">▼</div></div>
+        <div class="card-body"><div class="tabs">`;
+      tabKeys.forEach((t,i)=>{ h+=`<div class="tab${i===0?' active':''}" onclick="switchTab(this,'${c.id}',${i})">${t}</div>`; });
+      h+=`</div>`;
+      tabKeys.forEach((t,i)=>{ h+=`<div class="tab-content${i===0?' show':''}" data-card="${c.id}" data-idx="${i}">${c.tabs[t]}</div>`; });
+      h+=`</div></div>`;
+    });
+  } else if(mod.html){
+    h+=mod.html;
+  }
+  document.getElementById('mainContent').innerHTML=h;
+  bindCheckboxes();
+  if(key==='overview') updateOverviewStats();
+}
+
+function getCardStatus(card){
+  const ids=[];
+  Object.values(card.tabs).forEach(html=>{
+    const m=html.match(/data-id="([^"]+)"/g);
+    if(m) m.forEach(x=>ids.push(x.match(/"([^"]+)"/)[1]));
+  });
+  if(ids.length===0) return checkState[card.id+'_done']?'done':'pending';
+  const doneCount=ids.filter(id=>checkState[id]).length;
+  if(doneCount===ids.length) return 'done';
+  if(doneCount>0) return 'progress';
+  return 'pending';
+}
+
+function toggleCard(el){
+  const body=el.nextElementSibling;
+  const toggle=el.querySelector('.card-toggle');
+  body.classList.toggle('show');
+  toggle.classList.toggle('open');
+}
+
+function switchTab(el,cardId,idx){
+  el.parentElement.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll(`.tab-content[data-card="${cardId}"]`).forEach((tc,i)=>{
+    tc.classList.toggle('show',i===idx);
+  });
+}
+
+function bindCheckboxes(){
+  document.querySelectorAll('.check-box').forEach(cb=>{
+    const id=cb.getAttribute('data-id');
+    if(id && checkState[id]) cb.classList.add('checked');
+    cb.onclick=function(){
+      const cid=this.getAttribute('data-id');
+      if(!cid) return;
+      checkState[cid]=!checkState[cid];
+      this.classList.toggle('checked');
+      saveChecks();
+      updateModuleProgress();
+    };
+  });
+}
+
+function updateModuleProgress(){
+  const mod=DATA[currentModule];
+  if(!mod||!mod.cards) return;
+  let total=0,done=0;
+  mod.cards.forEach(c=>{
+    const ids=[];
+    Object.values(c.tabs).forEach(html=>{
+      const m=html.match(/data-id="([^"]+)"/g);
+      if(m) m.forEach(x=>ids.push(x.match(/"([^"]+)"/)[1]));
+    });
+    total+=Math.max(ids.length,1);
+    done+=ids.filter(id=>checkState[id]).length;
+  });
+  const pct=total>0?Math.round(done/total*100):0;
+  const pt=document.querySelector('.progress-text');
+  const pf=document.querySelector('.progress-bar-fill');
+  if(pt) pt.textContent=`${done}/${total} 已完成 (${pct}%)`;
+  if(pf) pf.style.width=pct+'%';
+  // Update card statuses
+  document.querySelectorAll('.card').forEach((card,i)=>{
+    if(mod.cards[i]){
+      const dot=card.querySelector('.card-status');
+      if(dot) dot.className='card-status '+getCardStatus(mod.cards[i]);
+    }
+  });
+}
+
+function updateOverviewStats(){
+  let total=0,done=0;
+  Object.keys(DATA).forEach(key=>{
+    const mod=DATA[key];
+    if(!mod.cards) return;
+    mod.cards.forEach(c=>{
+      const ids=[];
+      Object.values(c.tabs).forEach(html=>{
+        const m=html.match(/data-id="([^"]+)"/g);
+        if(m) m.forEach(x=>ids.push(x.match(/"([^"]+)"/)[1]));
+      });
+      total+=Math.max(ids.length,1);
+      done+=ids.filter(id=>checkState[id]).length;
+    });
+  });
+  const el=id=>document.getElementById(id);
+  if(el('statTotal')) el('statTotal').textContent=total;
+  if(el('statDone')) el('statDone').textContent=done;
+  if(el('statPending')) el('statPending').textContent=total-done;
+  if(el('statPct')) el('statPct').textContent=total>0?Math.round(done/total*100)+'%':'0%';
+}
+
+function handleSearch(query){
+  if(!query.trim()){showModule(currentModule);return;}
+  const q=query.toLowerCase();
+  let results=[];
+  Object.keys(DATA).forEach(key=>{
+    const mod=DATA[key];
+    if(mod.cards){
+      mod.cards.forEach(c=>{
+        let match=false;
+        if(c.title.toLowerCase().includes(q)) match=true;
+        Object.values(c.tabs).forEach(html=>{
+          if(html.toLowerCase().includes(q)) match=true;
+        });
+        if(match) results.push({module:key,moduleTitle:mod.title,card:c});
+      });
+    }
+    if(mod.html&&mod.html.toLowerCase().includes(q)){
+      results.push({module:key,moduleTitle:mod.title,card:{title:'总览',tabs:{}}});
+    }
+  });
+  let h=`<div class="page-title">🔍 搜索结果</div><div class="page-desc">找到 ${results.length} 个匹配项（关键词："${query}"）</div>`;
+  if(results.length===0){
+    h+=`<div class="tip-box tip-warn">未找到相关内容，请尝试其他关键词。</div>`;
+  } else {
+    results.forEach(r=>{
+      h+=`<div class="card"><div class="card-header" onclick="showModule('${r.module}')" style="cursor:pointer">
+        <div class="card-status pending"></div>
+        <div class="card-title">${r.moduleTitle} → ${r.card.title}</div>
+        <div style="color:var(--info);font-size:13px">点击查看 →</div></div></div>`;
+    });
+  }
+  document.getElementById('mainContent').innerHTML=h;
+}
+
+init();
+</script>
+</body>
+</html>
