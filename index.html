@@ -97,17 +97,67 @@ table.data-table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 
 .data-table td{padding:8px 12px;border-bottom:1px solid var(--g200)}
 .data-table tr:hover td{background:var(--g50)}
 .section-divider{height:1px;background:var(--g200);margin:16px 0}
-@media(max-width:768px){.layout{flex-direction:column}.sidebar{width:100%;min-width:100%;max-height:200px;border-right:none;border-bottom:1px solid var(--g200)}.main{padding:16px}.overview-stats{grid-template-columns:repeat(2,1fr)}.search-box{width:200px}}
+.menu-btn{display:none;background:none;border:none;color:#fff;font-size:22px;cursor:pointer;padding:4px 8px}
+.sidebar-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:200}
+.sidebar-overlay.show{display:block}
+@media(max-width:768px){
+  .menu-btn{display:block}
+  .header{padding:10px 14px}
+  .header h1{font-size:15px}
+  .search-box{width:140px;padding:5px 10px}
+  .search-box input{font-size:13px}
+  .layout{flex-direction:column;height:auto;min-height:calc(100vh - 48px)}
+  .sidebar{display:none;position:fixed;bottom:0;left:0;right:0;width:100%;min-width:100%;max-height:70vh;z-index:300;border-right:none;border-top:1px solid var(--g200);border-radius:16px 16px 0 0;box-shadow:0 -4px 20px rgba(0,0,0,.15);padding:8px 0 20px;overflow-y:auto}
+  .sidebar.mobile-open{display:block;animation:slideUp .25s ease-out}
+  @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+  .sidebar::before{content:"";display:block;width:36px;height:4px;background:var(--g300);border-radius:2px;margin:6px auto 10px}
+  .nav-item{padding:12px 20px;font-size:15px}
+  .nav-icon{font-size:18px}
+  .main{padding:14px;flex:1;height:auto;overflow-y:visible}
+  .page-title{font-size:18px}
+  .page-desc{font-size:13px;margin-bottom:14px}
+  .card-header{padding:12px 14px;gap:8px}
+  .card-title{font-size:14px}
+  .card-body{padding:0 14px 14px}
+  .card-body.show{display:block}
+  .tabs{overflow-x:auto;-webkit-overflow-scrolling:touch;flex-wrap:nowrap;gap:0;margin:10px -14px 0;padding:0 14px;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{white-space:nowrap;padding:8px 14px;font-size:12px;flex-shrink:0}
+  .tab-content{padding-top:12px}
+  .overview-stats{grid-template-columns:repeat(2,1fr);gap:8px}
+  .stat-card{padding:12px}
+  .stat-num{font-size:22px}
+  .stat-label{font-size:11px}
+  .flow-steps{gap:4px}
+  .flow-step{padding:6px 10px;font-size:12px}
+  .flow-arrow{font-size:14px}
+  .contact-card{display:flex;padding:8px 12px;font-size:12px;margin:3px 0}
+  .contact-role{font-size:11px}
+  .company-grid{grid-template-columns:1fr;gap:8px}
+  .tip-box{padding:10px 12px;font-size:12px;line-height:1.6}
+  .checklist li{font-size:12px;padding:5px 0;gap:6px}
+  .check-box{width:20px;height:20px}
+  .tl-title{font-size:13px}
+  .tl-desc{font-size:12px}
+  .timeline{padding-left:20px}
+  .data-table{font-size:12px;display:block;overflow-x:auto}
+  .data-table th,.data-table td{padding:6px 8px;white-space:nowrap}
+  .tag{font-size:11px;padding:2px 8px}
+  .step-title{font-size:13px}
+  .step-desc{font-size:12px}
+}
 </style>
 </head>
 <body>
 <div class="header">
+  <button class="menu-btn" onclick="toggleMobileMenu()" aria-label="菜单">☰</button>
   <h1><span>ZUU</span> 资遇 · 行政指引百科全书</h1>
   <div class="search-box">
     <span style="margin-right:8px">🔍</span>
     <input type="text" id="searchInput" placeholder="搜索流程、联系人、保司..." oninput="handleSearch(this.value)">
   </div>
 </div>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeMobileMenu()"></div>
 <div class="layout">
   <div class="sidebar" id="sidebar">
     <div class="nav-section">业务旅程</div>
@@ -162,7 +212,7 @@ overview: {
   <div class="tip-box tip-warn" style="margin-top:16px">
     <strong>⚠️ 核心提醒</strong><br>
     · 香港非永居申请人签证到期3个月内不予安排上牌申请和签约<br>
-    · 每月5号和20号为公司发佣日<br>
+    · 每月5号左右和20号左右为公司发佣日（保司来佣后安排，遇周末顺延）<br>
     · 持牌人每年须完成至少15个CPD时数（含3个道德与规例）<br>
     · INS公司LifeBee编码W168 / Digital公司LifeBee编码ZUU
   </div>
@@ -266,7 +316,12 @@ license: {
 <div class="tl-item"><div class="tl-dot"></div><div class="tl-title">积金局审核后支票扣费</div><div class="tl-desc">支票户口为单独户口，请确保有足够扣费金额</div></div>
 <div class="tl-item"><div class="tl-dot"></div><div class="tl-title">完成上牌后邮件通知</div></div>
 </div>`,
-      "费用与进修":`<div class="tip-box tip-info">
+      "费用与进修":`<div class="tip-box tip-danger">
+<strong>⚠️ 注意：MPF（4号牌）维护成本较高，请慎重考虑后再决定挂牌！</strong><br>
+· 每年需额外缴交MPF年费（注册附属中介人年费HKD 180）<br>
+· 每年需额外完成MPF专属的CPD学分（在保险CPD之外额外增加）<br>
+</div>
+<div class="tip-box tip-info" style="margin-top:10px">
 <strong>注册附属中介人年费：</strong>HKD 180<br><br>
 <strong>持续专业进修要求：</strong><br>
 每公历年须参加15小时进修活动，其中4小时须为核心活动。<br><br>
@@ -362,7 +417,7 @@ LifeBee公司资料云盘包含以下内容：<br>
 · 直营面积金额编排进入路线<br>
 · ZUU直营保险经纪公司介绍<br>
 · Lifebee操作指引<br>
-· 保险石期服务 · 保险公司介绍（新旧版）<br>
+· 保险售期服务 · 保险公司介绍（新旧版）<br>
 · 感恩指引 · 营销保障 · 多元货币叠加对照<br><br>
 <strong>📌 编码说明：</strong><br>
 INS公司LifeBee编码：<strong>W168</strong><br>
@@ -708,8 +763,12 @@ cpd: {
 登入"保险中介一站通账号" > 选择"持续专业培训声明" > 选择是否已完成规定学分要求 > 点"同意" > 最后"提交"<br><br>
 评核期：每年8月1日至翌年7月31日<br>
 申报期：每年8月1日至翌年9月30日<br>
+<strong>学分构成：</strong>总共15个时数，其中至少3个时数须为「道德与规例」（合规类），其余12个时数为常规类<br><br>
+<strong>📌 MPF持牌人（4号牌）额外要求：</strong><br>
+每公历年（1月1日至12月31日）须额外完成15小时MPF进修活动，其中4小时须为核心活动（MPF合规类）。此为保险CPD之外的额外要求。<br><br>
 ⚠️ 超过规定时数不可转入下一年度<br>
-⚠️ 需保存证据3年内以应保监合规核查
+⚠️ 需保存证据3年内以应保监合规核查<br>
+⚠️ <strong>7月31日前修完学分，9月30日前完成申报！</strong>
 </div>`
     }},
     {id:"cpd2",title:"签证续签指引",status:"pending",tabs:{
@@ -820,9 +879,11 @@ commission: {
   cards: [
     {id:"cm1",title:"公司发佣安排",status:"pending",tabs:{
       "说明":`<div style="font-size:13px;line-height:1.8">
-每月<strong>5号</strong>和<strong>20号</strong>为发佣日。<br>
-发佣之前后3天左右会有对账单发送至TR/渠道邮箱。如出现漏发/错发将在下期补回。<br>
+每月<strong>5号左右</strong>和<strong>20号左右</strong>为发佣日。<br>
+<strong>发佣逻辑：</strong>保司来佣后，公司安排在当月5号左右或20号左右开始发放。例如：保司6号来佣，则当月20号左右开始发放。如5号为周日，则顺延至6号（周一）开始发。<br>
+发放前会先发对账单给大家核对，确认无误后再打款。如出现漏发/错发将在下期补回。<br>
 一般会在保单冷静期结束后，公司收到保司佣金之后安排发佣。<br><br>
+<strong>📌 请各自关注入职激励是否体现在账单内，如有疑问及时反馈。</strong><br><br>
 <strong>渠道对账：</strong>为了减少结算中可能产生的纠纷，渠道收到对账单后必须确认，并电邮回复"收到"才会触发结算日自动打款。否则款项不发放。<br><br>
 <strong>持牌人对账：</strong>不需要确认，有异议2天内邮件回复，否则直接发放。
 </div>`
@@ -879,7 +940,7 @@ commission: {
 <strong>会员：</strong>佣金 493,100 HKD / 年度保费约12万USD<br>
 <strong>内阁会员：</strong>佣金 1,479,300 HKD / 年度保费约36万USD<br>
 <strong>顶尖会员：</strong>佣金 2,958,600 HKD / 年度保费约72万USD<br><br>
-（测算案例友B、汇率1:7.75、25年Q2费率表）
+（测算案例：友邦、汇率1:7.75、25年Q2费率表）
 </div>`
     }}
   ]
@@ -888,6 +949,17 @@ commission: {
 
 let currentModule = 'overview';
 let checkState = {};
+
+function toggleMobileMenu(){
+  const sb=document.getElementById('sidebar');
+  const ov=document.getElementById('sidebarOverlay');
+  sb.classList.toggle('mobile-open');
+  ov.classList.toggle('show');
+}
+function closeMobileMenu(){
+  document.getElementById('sidebar').classList.remove('mobile-open');
+  document.getElementById('sidebarOverlay').classList.remove('show');
+}
 
 function init(){
   try{ checkState = JSON.parse(localStorage.getItem('zuu_checks')||'{}'); }catch(e){ checkState={}; }
@@ -900,6 +972,7 @@ function saveChecks(){
 
 function showModule(key){
   currentModule = key;
+  closeMobileMenu();
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n=>{
     if(n.getAttribute('onclick')&&n.getAttribute('onclick').includes("'"+key+"'")) n.classList.add('active');
